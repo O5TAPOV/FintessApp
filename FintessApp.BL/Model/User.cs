@@ -1,8 +1,11 @@
-﻿namespace FintessApp.BL.Model
+﻿using System.Text.Json.Serialization;
+
+namespace FintessApp.BL.Model
 {
     /// <summary>
     /// Користувач.
     /// </summary>
+    [Serializable]
     public class User
     {
         #region Властивості
@@ -52,7 +55,7 @@
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException("Ім'я користувача не може бути пустим або null. ", nameof(name));
 
-            if (Gender == null)
+            if (gender == null)
                 throw new ArgumentNullException("Стать не може бути null. ", nameof(gender));
 
             if (birthDate < DateTime.Parse("01.01.1900"))
@@ -76,6 +79,6 @@
             Height = height;
         }
 
-        public override string ToString() => Name;
+        public override string ToString() => Name!;
     }
 }
